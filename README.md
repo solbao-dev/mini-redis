@@ -41,7 +41,7 @@ mini_redis/
 ├── test_hash_map.py
 ├── test_min_heap.py
 ├── test_mini_redis.py
-├── 동료평가순서.md
+├── 구현물설명.md
 └── README.md
 ```
 
@@ -206,4 +206,4 @@ used_memory = Σ(len(utf8(key)) + len(utf8(value)))
 
 보너스인 Pub/Sub, BST 등은 필수 범위의 정확성과 설명 가능성에 집중하기 위해 포함하지 않았습니다.
 
-동료평가 시연과 예상 질문 답변은 [`동료평가순서.md`](동료평가순서.md)를 따릅니다.
+구현물 설명과 동료평가 시연 및 예상 질문 답변은 [`구현물설명.md`](구현물설명.md)를 따릅니다.
