@@ -1,5 +1,48 @@
 # Mini Redis
 
+> **A Redis-inspired in-memory key-value store built from core data structures without Python's built-in `dict`, `set`, `collections`, or `heapq`.**  
+> Python 내장 해시맵·힙에 의존하지 않고 핵심 자료구조부터 직접 구현한 Redis 학습 프로젝트
+
+**CODYSSEY · Data Structures & Algorithms**  
+`Python` `Hash Map` `Doubly Linked List` `Min Heap` `LRU` `TTL` `CLI`
+
+## Overview | 프로젝트 소개
+
+This project implements a small Redis-like in-memory store from scratch to understand why Redis-style systems can provide fast key lookup, expiration, and memory eviction. A custom hash map handles key-value storage, a doubly linked list maintains LRU order, and a min heap manages TTL expiration.
+
+이 프로젝트는 Redis를 단순히 사용하는 데서 그치지 않고 **빠른 조회·LRU 메모리 제거·TTL 만료가 내부 자료구조에서 어떻게 동작하는지 직접 구현하며 이해하는 것**을 목표로 했습니다. 해시맵, 이중 연결 리스트, 최소 힙을 직접 작성하고 하나의 Mini Redis로 조합했습니다.
+
+## Core Architecture | 핵심 구조
+
+| Data Structure | Role | 구현 목적 |
+|---|---|---|
+| Custom Hash Map | `key → value` storage | 평균 `O(1)` 키 조회 |
+| Doubly Linked List | MRU ↔ LRU ordering | `O(1)` 노드 이동·삭제 |
+| Min Heap | Earliest TTL first | 가장 빠른 만료 시각 추적 |
+| TTL Map | Current expiration per key | lazy deletion 검증 |
+
+## Key Features | 주요 기능
+
+- Redis-style `SET`, `GET`, `DEL`, `EXISTS`, `DBSIZE`, `KEYS`
+- `CONFIG SET maxmemory` and LRU eviction
+- `EXPIRE` / `TTL` with a custom min heap
+- Lazy deletion for stale TTL heap entries
+- UTF-8 byte-based memory accounting
+- Redis-style command and OOM error handling
+- Unit tests for each data structure and integrated behavior
+
+## Learning Focus | 학습 포인트
+
+The main goal was not to reproduce production Redis, but to make the relationship between **data structures, algorithmic complexity, and observable database behavior** explicit and explainable.
+
+실제 Redis 전체를 복제하는 것이 아니라, 자료구조가 실제 기능으로 이어지는 과정을 설명할 수 있도록 만드는 데 집중했습니다. 특히 해시 충돌과 체이닝, 리해싱, MRU/LRU 이동, 최소 힙의 `peek/push/pop`, TTL lazy deletion을 코드 수준에서 확인했습니다.
+
+---
+
+# Detailed Implementation Notes | 상세 구현 기록
+
+아래 내용은 미션 수행 당시의 구현 규칙, 동작 흐름, 시간복잡도와 평가 준비 내용을 보존한 상세 기록입니다.
+
 Python의 `dict`, `set`, `collections`, `heapq` 없이 핵심 자료구조를 직접 구현한 CLI 기반 Mini Redis입니다. 과제의 필수 범위인 String 명령, LRU 메모리 제거, TTL, Redis 스타일 에러 처리만 구현하며 네트워크·영속성·동시성·복잡 자료형은 포함하지 않습니다.
 
 ## 1. 실행 방법
