@@ -1,10 +1,13 @@
 # Mini Redis
 
-> **A Redis-inspired in-memory key-value store built from core data structures without Python's built-in `dict`, `set`, `collections`, or `heapq`.**  
-> Python 내장 해시맵·힙에 의존하지 않고 핵심 자료구조부터 직접 구현한 Redis 학습 프로젝트
+
+> **Redis-like in-memory key-value store built from scratch with a custom hash map, doubly linked list, and min heap.**  
+> Python 내장 자료구조에 의존하지 않고 해시맵, 이중 연결 리스트, 최소 힙을 직접 구현한 Redis 스타일 인메모리 저장소
 
 **CODYSSEY · Tool Learning · Data Structures & Algorithms**  
 `Python` `Hash Map` `Doubly Linked List` `Min Heap` `LRU` `TTL` `CLI`
+
+---
 
 ---
 
